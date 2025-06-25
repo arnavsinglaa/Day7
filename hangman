@@ -1,3 +1,4 @@
+from replit import clear
 import random
 
 stages = ['''
@@ -71,19 +72,23 @@ print(display)
 
 while not end_of_game:
     guess = input("Guess a letter: ").lower()
+    clear()
+    if guess in display:
+        print(f"you have already guessed {guess}")
     for position in range(word_length):
         letter = chosen_word[position]
         if letter == guess:
             display[position] = letter
     if guess not in chosen_word:
+        print(f"You guessed {guess}")
         lives-=1
         if lives==0:
             end_of_game=True
             print("you lose")
     print(f"{' '.join(display)}")   
-    
+
     if "_" not in display:
         end_of_game = True
         print("You win.")
-        
+
     print(stages[lives])
